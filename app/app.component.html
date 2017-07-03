@@ -16,28 +16,19 @@
       </div>
     </section>
 
-    <section class="message-list">
+    <section class="message-list" *ngIf="messages.length">
 
-      <div class="message-item">
+      <div class="message-item" *ngFor="let message of messages" [class.owned]=" message.owned">
         <div class="message-header">
           <div class="header-group">
-            <span class="sender-name">Robert Lutes</span>
-            <span class="send-time">(2016-11-23 21:13:45)</span>
+            <span class="sender-name">{{message.sender}}</span>
+            <span class="send-time">{{message.time}}</span>
           </div>
-          <i class="material-icons">delete</i>
+          <button class="btn icon" (click)="delete(message)">
+            <i class="material-icons">delete</i>
+          </button>
         </div>
-        <span class="message">Hi, Piter</span>
-      </div>
-
-      <div class="message-item">
-        <div class="message-header">
-          <div class="header-group">
-            <span class="sender-name"></span>
-            <span class="send-time">(2016-11-23 21:13:49)</span>
-          </div>
-          <i class="material-icons">delete</i>
-        </div>
-        <span class="message">Hi, Tim</span>
+        <span class="message">{{message.text}}</span>
       </div>
 
     </section>

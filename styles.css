@@ -67,6 +67,11 @@ body {
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
+.message-item.owned {
+  margin-left: 50px;
+  background: #E1FCED;
+}
+
 .message-header {
   display: flex;
   justify-content: space-between;
