@@ -1,12 +1,24 @@
 import { Component } from '@angular/core';
 
+class IntervalService {
+  interval: any;
+
+  setInterval(time: number, callback: any) {
+	this.interval = setInterval(callback, time);
+  }
+
+  clearInterval() {
+    clearTimeout(this.interval);
+  }
+}
+
 class Message {
   sender: string;
   time: string;
   text: string;
   owned: boolean;
 
-  constructor(text: string, sender: text = '') {
+  constructor(text: string, sender: string = '') {
     const now = new Date();
     const options = {
       year: 'numeric',
@@ -30,13 +42,13 @@ class Message {
 const messages: Message[] = [
   {
     sender: 'Robert Lutes',
-    time: '(2016-11-23 21:13:45)',
+    time: '(2016/11/23 21:13:45)',
     text: 'Hi, Piter',
     owned: false,
   },
   {
     sender: '',
-    time: '(2016-11-23 21:13:49)',
+    time: '(2016/11/23 21:13:49)',
     text: 'Hi, Robert',
     owned: true,
   },
@@ -60,10 +72,19 @@ export class AppComponent {
     }
   }
 
+  sendFackMessage() {
+	let msg = new Message('Test message', 'Robert Lutes');
+	this.messages.push(msg);
+  }
+  
   send() {
     let message: Message = new Message(this.newMessage);
 
     this.messages.push(message);
     this.newMessage = '';
+	
+	let interval = new IntervalService();
+	interval.setInterval(2000, this.sendFackMessage());
+	//interval.clearInterval();
   }
 }
