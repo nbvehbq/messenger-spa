@@ -1,4 +1,5 @@
-<main>
+<main class="site">
+
   <section class="content">
     <section class="navbar">
       <div class="empty-block"></div>
@@ -15,7 +16,6 @@
         <button class="btn btn-danger">DELETE ALL</button>
       </div>
     </section>
-
     <section class="message-list" *ngIf="messages.length">
 
       <div class="message-item" *ngFor="let message of messages" [class.owned]=" message.owned">
@@ -35,8 +35,8 @@
   </section>
 
   <section class="footer">
-    <form class="send-form">
-      <input type="text" name="message"  placeholder="Message text" required>
+    <form class="send-form" (ngSubmit)="send(); sendForm.reset()" #sendForm="ngForm">
+      <input type="text" [(ngModel)]="newMessage" name="message" placeholder="Message text">
       <button class="btn" type="submit">SEND</button>
     </form>
   </section>
